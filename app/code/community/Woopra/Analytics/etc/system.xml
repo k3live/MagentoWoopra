@@ -53,21 +53,41 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </hostname>
-                        <account_id translate="label">
-                            <label>Woopra API key</label>
-                            <comment>Your API key can be found on woopra.com under My Websites -> Setup -> API Key.</comment>
+                        <!--<app_id translate="label">
+                            <label>Woopra App ID</label>
+                            <comment>Your App ID can be found on woopra.com under My Websites -> Setup -> Access Keys.</comment>
                             <frontend_type>text</frontend_type>
                             <validate>validate-alphanum</validate>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </account_id>
+                        </app_id>
+                        <secret_key translate="label">
+                            <label>Woopra Secret Key</label>
+                            <comment>Your Secret Key can be found on woopra.com under My Websites -> Setup -> Access Keys.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-alphanum</validate>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secret_key>
+                        <schema_update translate="label">
+                            <label>Schema Update</label>
+                            <comment>Run schema update one time after install. Note: Requires App ID and Secret Key.</comment>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>woopra/button</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </schema_update>-->
                         <test translate="label">
                             <label>Show Test Alert</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>40</sort_order>
+                            <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -84,8 +104,8 @@
                     <expanded>0</expanded>
                     <fields>
                         <subdomain translate="label">
-                            <label>Subdomain Aggregation</label>
-                            <comment>Enter subdomain and root domain to track (ie: 'subdomain', 'rootdomain.com'). Note: Surround subdomain and root domain with apostrophes, separated by a comma!</comment>
+                            <label>Subdomain </label>
+                            <comment>Enter subdomain to track (ie: subdomain).</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -114,7 +134,7 @@
                         </track_url_parameters>
                         <tracking_cookie_expiration translate="label">
                             <label>Tracking Cookie Expiration</label>
-                            <comment>The tracking cookie expiration in days (Default: 365)</comment>
+                            <comment>The tracking cookie expiration in days (Default: 730)</comment>
                             <frontend_type>text</frontend_type>
                             <validate>validate-digits</validate>
                             <sort_order>30</sort_order>
@@ -124,7 +144,7 @@
                         </tracking_cookie_expiration>
                         <tracking_cookie_name translate="label">
                             <label>Tracking Cookie Name</label>
-                            <comment>Change the name of the cookie stored by Woopra (Default: woopraTracker)</comment>
+                            <comment>Change the name of the cookie stored by Woopra (Default: wooTracker)</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
@@ -209,6 +229,26 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </outgoing_tracking_pause>
+                        <outgoing_ignore_subdomain translate="label">
+                            <label>Outgoing Ignore Subdomain</label>
+                            <comment>Do not include links to subdomains as outgoing links (Default: Enable)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>125</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </outgoing_ignore_subdomain>
+                        <hide_campaign translate="label">
+                            <label>Hide Campaign</label>
+                            <comment>Enabling this option will remove campaign properties from the URL when they’re captured (Default: Disabled)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hide_campaign>
                     </fields>
                 </woopra_advanced>
                 <woopra_outputs translate="label" module="woopra">
@@ -593,6 +633,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </product_removed_from_wishlist>
+                        <product_purchased translate="label">
+                            <label>Product Purchased</label>
+                            <comment>Product purchased name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>245</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_purchased>
                         <product_tag_added translate="label">
                             <label>Product Tag Added</label>
                             <comment>Product tag added event tracking name (empty to disable).</comment>

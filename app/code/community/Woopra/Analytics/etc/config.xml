@@ -65,7 +65,9 @@
             <woopra>
                 <enabled>1</enabled>
                 <hostname></hostname>
-                <account_id></account_id>
+                <app_id></app_id>
+                <secret_key></secret_key>
+                <!--<schema_update></schema_update>-->
                 <test>0</test>
             </woopra>
             <woopra_advanced>
@@ -82,6 +84,8 @@
                 <download_tracking_pause></download_tracking_pause>
                 <outgoing_tracking>1</outgoing_tracking>
                 <outgoing_tracking_pause></outgoing_tracking_pause>
+                <outgoing_ignore_subdomain>1</outgoing_ignore_subdomain>
+                <hide_campaign></hide_campaign>
             </woopra_advanced>
             <woopra_outputs>
                 <name>name</name>
@@ -126,6 +130,7 @@
                 <product_removed_from_compare>product_removed_from_compare</product_removed_from_compare>
                 <product_added_to_wishlist>product_added_to_wishlist</product_added_to_wishlist>
                 <product_removed_from_wishlist>product_removed_from_wishlist</product_removed_from_wishlist>
+                <product_purchased>product_purchased</product_purchased>
                 <product_tag_added>product_tag_added</product_tag_added>
                 <product_review_read>product_review_read</product_review_read>
                 <product_review_posted>product_review_posted</product_review_posted>

@@ -10,9 +10,13 @@
 
 class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public function getApiKey()
+    public function getAppId()
     {
-        return Mage::getStoreConfig('woopra_analytics/woopra/account_id');
+        return Mage::getStoreConfig('woopra_analytics/woopra/app_id');
+    }
+    public function getSecretKey()
+    {
+        return Mage::getStoreConfig('woopra_analytics/woopra/secret_key');
     }
     public function getEnabled()
     {
@@ -77,6 +81,14 @@ class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
     public function getOutgoingTrackingPause()
     {
         return Mage::getStoreConfig('woopra_analytics/woopra_advanced/outgoing_tracking_pause');
+    }
+    public function getOutgoingIgnoreSubdomain()
+    {
+        return Mage::getStoreConfig('woopra_analytics/woopra_advanced/outgoing_ignore_subdomain');
+    }
+    public function getHideCampaign()
+    {
+        return Mage::getStoreConfig('woopra_analytics/woopra_advanced/hide_campaign');
     }
     public function getCustomerName()
     {
@@ -237,6 +249,10 @@ class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
     public function getProductRemovedFromWishlist()
     {
         return Mage::getStoreConfig('woopra_analytics/woopra_events/product_removed_from_wishlist');
+    }
+    public function getProductPurchased()
+    {
+        return Mage::getStoreConfig('woopra_analytics/woopra_events/product_purchased');
     }
     public function getProductTagAdded()
     {
