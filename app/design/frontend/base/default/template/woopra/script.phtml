@@ -9,39 +9,10 @@
  */
 ?>
 <?php if($this->getSetting('enabled')) { ?>
-
 <!-- Start of Woopra Code -->
-<?php if ($this->getSetting('woopra_checkout_trigger') == 1) { ?>
 <script type="text/javascript">
-Checkout.prototype.gotoSection = function(section) {
-    woopra_action = section;
-    if (woopra_action == '')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutBillingAddress(); ?>';
-    else if (woopra_action == 'billing')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutBillingAddress(); ?>';
-    else if (woopra_action == 'shipping')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutShippingAddress(); ?>';
-    else if (woopra_action == 'shipping_method')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutShippingMethod(); ?>';
-    else if (woopra_action == 'payment')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutPaymentMethod(); ?>';
-    else if (woopra_action == 'review')
-        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutReview(); ?>';
-    try {
-        woopra.track({
-            name: ''+woopra_action+''
-        });
-    } catch(err) { }
-    section = $('opc-'+section);
-    section.addClassName('allow');
-    this.accordion.openSection(section);
-};
-</script>
-<?php } ?>
-<script type="text/javascript">
-(function(){
-var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
-})("woopra");
+//<![CDATA[
+!function(){var a,b,c,d=window,e=document,f=arguments,g="script",h=["config","track","trackForm","trackClick","identify","visit","push","call"],i=function(){var a,b=this,c=function(a){b[a]=function(){return b._e.push([a].concat(Array.prototype.slice.call(arguments,0))),b}};for(b._e=[],a=0;a<h.length;a++)c(h[a])};for(d.__woo=d.__woo||{},a=0;a<f.length;a++)d.__woo[f[a]]=d[f[a]]=d[f[a]]||new i;b=e.createElement(g),b.async=1,b.src="//static.woopra.com/js/w.js",c=e.getElementsByTagName(g)[0],c.parentNode.insertBefore(b,c)}("woopra");
     woopra.config('app', 'magento');
 <?php if ($this->getSetting('tracking_cookie_expiration') != NULL) { ?>    var expires = new Date();<?php echo "\n"; ?>
     expires.setDate(expires.getDate() + <?php echo $this->getSetting('tracking_cookie_expiration'); ?>);
@@ -55,11 +26,13 @@ var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identi
 <?php if ($this->getSetting('download_tracking_pause') != NULL && $this->getSetting('download_tracking') == 1) { ?>    woopra.config('download_pause', <?php echo $this->getSetting('download_tracking_pause'); ?>);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('outgoing_tracking') == 0) { ?>    woopra.config('outgoing_tracking', false);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('outgoing_tracking_pause') != NULL && $this->getSetting('outgoing_tracking') == 1) { ?>    woopra.config('outgoing_pause', <?php echo $this->getSetting('outgoing_tracking_pause'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('outgoing_ignore_subdomain') == 0) { ?>    woopra.config('outgoing_ignore_subdomain', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('hide_campaign') == 1) { ?>    woopra.config('hide_campaign', true);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('hostname') != NULL) { ?>    woopra.config('domain', '<?php echo $this->getSetting('hostname'); ?>');<?php echo "\n"; ?>
 <?php } else { ?>    woopra.config('domain', '<?php echo $this->getSetting('url'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('visitor_timeout') != NULL) { ?>    woopra.config('idle_timeout', <?php echo $this->getSetting('visitor_timeout') * 60 * 1000; ?>);<?php echo "\n"; ?>
 <?php } else { ?>    woopra.config('idle_timeout', 1800000);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('subdomain') != NULL) { ?>    woopra.config(<?php echo $this->getSetting('subdomain'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('subdomain') != NULL) { ?>    woopra.identify('subdomain', '<?php echo $this->getSetting('subdomain'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_name') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_email') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_company') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
@@ -93,7 +66,12 @@ var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identi
         name: '<?php echo $this->getSetting('woopra_subscriber_status'); ?>',
         email: '<?php echo $this->getSetting('woopra_subscriber_email'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_contacts_index_post') == 1) { ?>    woopra.track({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_contacts_index_post') == 1) { ?>
+<?php if ($this->getSetting('customer_group') == "NOT LOGGED IN") { ?>
+    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('woopra_contacts_name'); ?>');<?php echo "\n"; ?>
+    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('woopra_contacts_email'); ?>');<?php echo "\n"; ?>
+<?php } ?>
+    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getContactFormSent(); ?>',
         customer_name: '<?php echo $this->getSetting('woopra_contacts_name'); ?>',
         customer_email: '<?php echo $this->getSetting('woopra_contacts_email'); ?>',
@@ -158,8 +136,25 @@ var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identi
         shipping_method: '<?php echo $this->getSetting('woopra_checkout_success_shipping_description'); ?>',
         total_items_ordered: '<?php echo $this->getSetting('woopra_checkout_success_total_items_ordered'); ?>'
 <?php echo "    });\n"; } ?>
+<?php if (Mage::helper('woopra')->getProductPurchased() != NULL && $this->getSetting('woopra_checkout_success_trigger') == 1) {
+    $lastOrderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+    if ($lastOrderId) {
+        $order = Mage::getModel('sales/order')->loadByIncrementId($lastOrderId);
+        $items = $order->getAllVisibleItems();
+        foreach ($items as $itemId => $item)
+            {
+                $product_name = Mage::getModel('catalog/product')->load($item->getProductId())->getData('name');
+                $product_sku = Mage::getModel('catalog/product')->load($item->getProductId())->getData('sku');
+                $product_price = Mage::getModel('catalog/product')->load($item->getProductId())->getData('price');
+    ?>    woopra.track({<?php echo "\n";?>
+        name: '<?php echo Mage::helper('woopra')->getProductPurchased(); ?>',
+        product_name: '<?php echo $product_name; ?>',
+        product_sku: '<?php echo $product_sku; ?>',
+        product_price: '<?php echo $product_price; ?>',
+        product_qty: '<?php echo $item->getData('qty_ordered'); ?>'
+<?php echo "    });\n"; } ?>
+<?php } }?>
 </script>
-
 <?php if($this->getSetting('test')) { ?>
 <script type="text/javascript">
     alert('Woopra module is correctly installed, you can safely turn off the test alert.\n' +
@@ -177,6 +172,7 @@ var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identi
         'Cart Total: <?php echo $this->getSetting('customer_cart_total'); ?>\n' +
         'Wishlist Items: <?php echo $this->getSetting('customer_wishlist_items'); ?>\n' +
         'Wishlist Total: <?php echo $this->getSetting('customer_wishlist_total'); ?>\n');
+//]]>
 </script><?php } ?>
 <!-- End of Woopra Code -->
 <?php } ?>
