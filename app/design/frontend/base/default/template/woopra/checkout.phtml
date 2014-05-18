@@ -32,10 +32,6 @@ Checkout.prototype.gotoSection = function (section) {
             name: ''+woopra_action+''
         });
     } catch(err) { }
-    //section = $('opc-'+section);
-    //section.addClassName('allow');
-    //this.accordion.openSection(section);
-
     this.currentStep = section;
     var sectionElement = $('opc-' + section);
     sectionElement.addClassName('allow');
