@@ -80,15 +80,15 @@ class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
     }
     public function getCustomerName()
     {
-        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/customer_name');
+        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/name');
     }
     public function getCustomerEmail()
     {
-        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/customer_email');
+        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/email');
     }
     public function getCustomerCompany()
     {
-        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/customer_company');
+        return Mage::getStoreConfig('woopra_analytics/woopra_outputs/company');
     }
     public function getCustomerLocation()
     {

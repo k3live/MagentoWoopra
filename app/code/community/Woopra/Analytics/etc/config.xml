@@ -12,7 +12,7 @@
 <config>
     <modules>
         <Woopra_Analytics>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </Woopra_Analytics>
     </modules>
     <global>
@@ -84,9 +84,9 @@
                 <outgoing_tracking_pause></outgoing_tracking_pause>
             </woopra_advanced>
             <woopra_outputs>
-                <customer_name>name</customer_name>
-                <customer_email>email</customer_email>
-                <customer_company>company</customer_company>
+                <name>name</name>
+                <email>email</email>
+                <company>company</company>
                 <customer_location>customer_location</customer_location>
                 <customer_phone>customer_phone</customer_phone>
                 <customer_group>customer_group</customer_group>

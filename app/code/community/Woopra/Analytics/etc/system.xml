@@ -201,7 +201,7 @@
                         </outgoing_tracking>
                         <outgoing_tracking_pause translate="label">
                             <label>Outgoing Link Tracking Pause</label>
-                            <comment>Change outgoing link pause to guarantee the tracking request is sent (Default: 200 milliseconds)</comment>
+                            <comment>Change outgoing link pause to guarantee the tracking request is sent (Default: 400 milliseconds)</comment>
                             <frontend_type>text</frontend_type>
                             <validate>validate-digits</validate>
                             <sort_order>120</sort_order>
@@ -221,7 +221,7 @@
                     <expanded>0</expanded>
                     <comment>You can disable outputs here that you do not want to use. On some servers a performance gain may be noticed by disabling unused calls.</comment>
                     <fields>
-                        <customer_name translate="label">
+                        <name translate="label">
                             <label>Customer Name</label>
                             <comment>Customer name output name (empty to disable). Note: This is a reserved property and should not be changed!</comment>
                             <frontend_type>text</frontend_type>
@@ -229,8 +229,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </customer_name>
-                        <customer_email translate="label">
+                        </name>
+                        <email translate="label">
                             <label>Customer Email</label>
                             <comment>Customer email output name (empty to disable). Note: This is a reserved property and should not be changed!</comment>
                             <frontend_type>text</frontend_type>
@@ -238,8 +238,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </customer_email>
-                        <customer_company translate="label">
+                        </email>
+                        <company translate="label">
                             <label>Customer Company</label>
                             <comment>Customer company output name (empty to disable). Note: This is a reserved property and should not be changed!</comment>
                             <frontend_type>text</frontend_type>
@@ -247,7 +247,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </customer_company>
+                        </company>
                         <customer_location translate="label">
                             <label>Customer Location</label>
                             <comment>Customer location output name (empty to disable).</comment>
