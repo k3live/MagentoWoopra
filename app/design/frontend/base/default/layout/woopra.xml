@@ -11,7 +11,7 @@
 -->
 <layout>
     <default>
-        <reference name="before_body_end">
+        <reference name="head">
             <block type="woopra/script" name="woopra" as="woopra" template="woopra/script.phtml"/>
         </reference>
     </default>
