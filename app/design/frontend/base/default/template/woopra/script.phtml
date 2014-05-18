@@ -28,7 +28,7 @@ Checkout.prototype.gotoSection = function(section) {
     else if (woopra_action == 'review')
         woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutReview(); ?>';
     try {
-        woopraTracker.pushEvent({
+        woopra.track({
             name: ''+woopra_action+''
         });
     } catch(err) { }
@@ -39,40 +39,44 @@ Checkout.prototype.gotoSection = function(section) {
 </script>
 <?php } ?>
 <script type="text/javascript">
-function woopraReady(tracker) {
+(function(){
+var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
+})("woopra");
+    woopra.config('app', 'magento');
 <?php if ($this->getSetting('tracking_cookie_expiration') != NULL) { ?>    var expires = new Date();<?php echo "\n"; ?>
     expires.setDate(expires.getDate() + <?php echo $this->getSetting('tracking_cookie_expiration'); ?>);
-    tracker.option('cookie_expire', expires);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('tracking_cookie_name') != NULL) { ?>    tracker.option('cookie_name', '<?php echo $this->getSetting('tracking_cookie_name'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('tracking_cookie_domain') != NULL) { ?>    tracker.option('cookie_domain', '<?php echo $this->getSetting('tracking_cookie_domain'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('tracking_cookie_path') != NULL) { ?>    tracker.option('cookie_path', '<?php echo $this->getSetting('tracking_cookie_path'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('ping') == 0) { ?>    tracker.option('ping', false);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('ping_interval') != NULL && $this->getSetting('ping') == 1) { ?>    tracker.option('ping_interval', <?php echo $this->getSetting('ping_interval'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('download_tracking') == 0) { ?>    tracker.option('download_tracking', false);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('download_tracking_pause') != NULL && $this->getSetting('download_tracking') == 1) { ?>    tracker.option('download_pause', <?php echo $this->getSetting('download_tracking_pause'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('outgoing_tracking') == 0) { ?>    tracker.option('outgoing_tracking', false);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('outgoing_tracking_pause') != NULL && $this->getSetting('outgoing_tracking') == 1) { ?>    tracker.option('outgoing_pause', <?php echo $this->getSetting('outgoing_tracking_pause'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('hostname') != NULL) { ?>    tracker.setDomain('<?php echo $this->getSetting('hostname'); ?>');<?php echo "\n"; ?>
-<?php } else { ?>    tracker.setDomain('<?php echo $this->getSetting('url'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('visitor_timeout') != NULL) { ?>    tracker.setIdleTimeout(<?php echo $this->getSetting('visitor_timeout') * 60 * 1000; ?>);<?php echo "\n"; ?>
-<?php } else { ?>    tracker.setIdleTimeout(1800000);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('subdomain') != NULL) { ?>    tracker.option(<?php echo $this->getSetting('subdomain'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_name') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_email') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_company') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_location') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerLocation(); ?>', '<?php echo $this->getSetting('customer_location'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_phone') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerPhone(); ?>', '<?php echo $this->getSetting('customer_phone'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_group') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerGroup(); ?>', '<?php echo $this->getSetting('customer_group'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_lifetime_sales') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerLifetimeSales(); ?>', '<?php echo $this->getSetting('customer_lifetime_sales'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_number_orders') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerNumberOrders(); ?>', '<?php echo $this->getSetting('customer_number_orders'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_create_date') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCreateDate(); ?>', '<?php echo $this->getSetting('customer_create_date'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_cart_items') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCartItems(); ?>', '<?php echo $this->getSetting('customer_cart_items'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_cart_total') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCartTotal(); ?>', '<?php echo $this->getSetting('customer_cart_total'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_wishlist_items') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerWishlistItems(); ?>', '<?php echo $this->getSetting('customer_wishlist_items'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('customer_wishlist_total') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerWishlistTotal(); ?>', '<?php echo $this->getSetting('customer_wishlist_total'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('track_url_parameters') == 1) { ?>    tracker.trackPageview({type:'pageview',url:window.location.pathname+window.location.search,title:document.title});<?php echo "\n"; ?>
-<?php } else { ?>    tracker.track();<?php echo "\n"; } ?>
-<?php if ($this->getSetting('woopra_cart_wishlist_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+    woopra.config('cookie_expire', expires);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('tracking_cookie_name') != NULL) { ?>    woopra.config('cookie_name', '<?php echo $this->getSetting('tracking_cookie_name'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('tracking_cookie_domain') != NULL) { ?>    woopra.config('cookie_domain', '<?php echo $this->getSetting('tracking_cookie_domain'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('tracking_cookie_path') != NULL) { ?>    woopra.config('cookie_path', '<?php echo $this->getSetting('tracking_cookie_path'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('ping') == 0) { ?>    woopra.config('ping', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('ping_interval') != NULL && $this->getSetting('ping') == 1) { ?>    woopra.config('ping_interval', <?php echo $this->getSetting('ping_interval'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('download_tracking') == 0) { ?>    woopra.config('download_tracking', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('download_tracking_pause') != NULL && $this->getSetting('download_tracking') == 1) { ?>    woopra.config('download_pause', <?php echo $this->getSetting('download_tracking_pause'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('outgoing_tracking') == 0) { ?>    woopra.config('outgoing_tracking', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('outgoing_tracking_pause') != NULL && $this->getSetting('outgoing_tracking') == 1) { ?>    woopra.config('outgoing_pause', <?php echo $this->getSetting('outgoing_tracking_pause'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('hostname') != NULL) { ?>    woopra.config('domain', '<?php echo $this->getSetting('hostname'); ?>');<?php echo "\n"; ?>
+<?php } else { ?>    woopra.config('domain', '<?php echo $this->getSetting('url'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('visitor_timeout') != NULL) { ?>    woopra.config('idle_timeout', <?php echo $this->getSetting('visitor_timeout') * 60 * 1000; ?>);<?php echo "\n"; ?>
+<?php } else { ?>    woopra.config('idle_timeout', 1800000);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('subdomain') != NULL) { ?>    woopra.config(<?php echo $this->getSetting('subdomain'); ?>);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_name') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_email') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_company') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_location') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerLocation(); ?>', '<?php echo $this->getSetting('customer_location'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_phone') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerPhone(); ?>', '<?php echo $this->getSetting('customer_phone'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_group') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerGroup(); ?>', '<?php echo $this->getSetting('customer_group'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_lifetime_sales') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerLifetimeSales(); ?>', '<?php echo $this->getSetting('customer_lifetime_sales'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_number_orders') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerNumberOrders(); ?>', '<?php echo $this->getSetting('customer_number_orders'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_create_date') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCreateDate(); ?>', '<?php echo $this->getSetting('customer_create_date'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_cart_items') !== NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCartItems(); ?>', '<?php echo $this->getSetting('customer_cart_items'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_cart_total') !== NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCartTotal(); ?>', '<?php echo $this->getSetting('customer_cart_total'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_wishlist_items') !== NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerWishlistItems(); ?>', '<?php echo $this->getSetting('customer_wishlist_items'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_wishlist_total') !== NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerWishlistTotal(); ?>', '<?php echo $this->getSetting('customer_wishlist_total'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('track_url_parameters') == 1) { ?>    woopra.config('ignore_query_url', false);<?php echo "\n"; ?>
+    woopra.track('pv', {url: window.location.pathname+window.location.search, title: document.title});<?php echo "\n"; ?>
+<?php } else { ?>    woopra.track();<?php echo "\n"; } ?>
+<?php if ($this->getSetting('woopra_cart_wishlist_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo $this->getSetting('woopra_cart_wishlist_status'); ?>',
         product_name: '<?php echo $this->getSetting('woopra_cart_wishlist_name'); ?>',
         product_sku: '<?php echo $this->getSetting('woopra_cart_wishlist_sku'); ?>',
@@ -85,61 +89,61 @@ function woopraReady(tracker) {
         product_tagged: '<?php echo $this->getSetting('woopra_product_tag_name'); ?>'<?php } ?>
 <?php } echo "\n";?>
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_subscriber_changed') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_subscriber_changed') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo $this->getSetting('woopra_subscriber_status'); ?>',
         email: '<?php echo $this->getSetting('woopra_subscriber_email'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_contacts_index_post') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_contacts_index_post') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getContactFormSent(); ?>',
         customer_name: '<?php echo $this->getSetting('woopra_contacts_name'); ?>',
         customer_email: '<?php echo $this->getSetting('woopra_contacts_email'); ?>',
         customer_telephone: '<?php echo $this->getSetting('woopra_contacts_telephone'); ?>',
         customer_comment: '<?php echo $this->getSetting('woopra_contacts_comment'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_search_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_search_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCatalogSearch(); ?>',
         keywords: '<?php echo $this->getSetting('woopra_search_keywords'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_cms_noroute_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_cms_noroute_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCmsNoRoute(); ?>',
         path: '<?php echo $this->getSetting('woopra_cms_noroute_path'); ?>',
         url: '<?php echo $this->getSetting('woopra_cms_noroute_url'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_forgot_password_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_forgot_password_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getForgotPassword(); ?>',
         email: '<?php echo $this->getSetting('woopra_forgot_password_email'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_estimate_post_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_estimate_post_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getEstimatePost(); ?>',
         country: '<?php echo $this->getSetting('woopra_estimate_post_country'); ?>',
         state: '<?php echo $this->getSetting('woopra_estimate_post_state'); ?>',
         zip: '<?php echo $this->getSetting('woopra_estimate_post_zip'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_password_changed_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_password_changed_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getChangedPassword(); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_create_account_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_create_account_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCustomerCreateAccount(); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_create_account_success_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_create_account_success_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCustomerCreateAccountSuccess(); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_poll_vote_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_poll_vote_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getPollVote(); ?>',
         poll_title: '<?php echo $this->getSetting('woopra_poll_vote_title'); ?>',
         poll_vote: '<?php echo $this->getSetting('woopra_poll_vote_answer'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_coupon_code_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_coupon_code_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo $this->getSetting('woopra_coupon_code_status'); ?>',
         coupon_code: '<?php echo $this->getSetting('woopra_coupon_code'); ?>',
         coupon_code_active: '<?php echo $this->getSetting('woopra_coupon_code_active'); ?>',
         coupon_code_name: '<?php echo $this->getSetting('woopra_coupon_code_name'); ?>',
         coupon_code_validity: '<?php echo $this->getSetting('woopra_coupon_code_validity'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_login_logout_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_login_logout_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo $this->getSetting('woopra_login_logout_status'); ?>'
 <?php echo "    });\n"; } ?>
-<?php if ($this->getSetting('woopra_checkout_success_trigger') == 1) { ?>    tracker.pushEvent({<?php echo "\n";?>
+<?php if ($this->getSetting('woopra_checkout_success_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCheckoutSuccess(); ?>',
 <?php if ($this->getSetting('woopra_checkout_success_coupon_code') != NULL) { ?>        coupon_code: '<?php echo $this->getSetting('woopra_checkout_success_coupon_code'); ?>',<?php echo "\n"; } ?>
 <?php if ($this->getSetting('woopra_checkout_success_discount_amount') != 0) { ?>        discount_amount: '<?php echo $this->getSetting('woopra_checkout_success_discount_amount'); ?>',<?php echo "\n"; } ?>
@@ -154,16 +158,6 @@ function woopraReady(tracker) {
         shipping_method: '<?php echo $this->getSetting('woopra_checkout_success_shipping_description'); ?>',
         total_items_ordered: '<?php echo $this->getSetting('woopra_checkout_success_total_items_ordered'); ?>'
 <?php echo "    });\n"; } ?>
-    return false;
-}
-(function(){
-    var wsc = document.createElement('script');
-    wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
-    wsc.type = 'text/javascript';
-    wsc.async = true;
-    var ssc = document.getElementsByTagName('script')[0];
-    ssc.parentNode.insertBefore(wsc, ssc);
-})();
 </script>
 
 <?php if($this->getSetting('test')) { ?>
