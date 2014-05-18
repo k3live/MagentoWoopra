@@ -112,21 +112,24 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
 
                 //Customer Lifetime Array
                 $customerTotals = Mage::getResourceModel('sales/sale_collection')
+                    ->setOrderStateFilter(Mage_Sales_Model_Order::STATE_CANCELED, true)
                     ->setCustomerFilter($customer)
                     ->load()
                     ->getTotals();
                 //Customer Lifetime Sales Count
-                if (Mage::helper('woopra')->getCustomerLifetimeSales() != NULL && $data['group'] != 'NOT LOGGED IN') {
+                if (Mage::helper('woopra')->getCustomerLifetimeSales() != NULL && $group != 'NOT LOGGED IN') {
                     $data['customer_lifetime_sales'] = round($customerTotals->getLifetime(), 2);
                 }
                 //Customer Lifetime Orders
-                if (Mage::helper('woopra')->getCustomerNumberOrders() != NULL && $data['group'] != 'NOT LOGGED IN') {
+                if (Mage::helper('woopra')->getCustomerNumberOrders() != NULL && $group != 'NOT LOGGED IN') {
                     $data['customer_number_orders'] = $customerTotals->getNumOrders();
                 }
 
                 //Customer Wishlist Array
                 $wishList = Mage::getSingleton('wishlist/wishlist')->loadByCustomer($customer);
                 $wishListItemCollection = $wishList->getItemCollection();
+                $wishlistItems = 0;
+                $wishListTotal = 0;
                 foreach ($wishListItemCollection as $item) {
                     $product = $item->getProduct();
                     $wishlistItems = $wishlistItems + 1;
