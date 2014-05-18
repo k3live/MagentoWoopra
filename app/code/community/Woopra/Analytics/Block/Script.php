@@ -22,7 +22,7 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
         parent::_construct();
 
         // Decide whether the Woopra Module has been activated
-        $website_id = Mage::helper('woopra')->getApiKey();
+        //$website_id = Mage::helper('woopra')->getApiKey();
         if(Mage::helper('woopra')->getEnabled() == true) {
             $this->setTemplate('woopra/script.phtml');
         }
@@ -41,6 +41,8 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
         if(empty($data)) {
             $data = array(
                 'enabled' => Mage::helper('woopra')->getEnabled(),
+                'app_id' => Mage::helper('woopra')->getAppId(),
+                'secret_key' => Mage::helper('woopra')->getSecretKey(),
                 'test' => Mage::helper('woopra')->getTest(),
                 'visitor_timeout' => Mage::helper('woopra')->getVistorTimeout(),
                 'track_url_parameters' => Mage::helper('woopra')->getTrackUrlParameters(),
@@ -56,6 +58,8 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                 'download_tracking_pause' => Mage::helper('woopra')->getDownloadTrackingPause(),
                 'outgoing_tracking' => Mage::helper('woopra')->getOutgoingTracking(),
                 'outgoing_tracking_pause' => Mage::helper('woopra')->getOutgoingTrackingPause(),
+                'outgoing_ignore_subdomain' => Mage::helper('woopra')->getOutgoingIgnoreSubdomain(),
+                'hide_campaign' => Mage::helper('woopra')->getHideCampaign(),
                 'url' => $_SERVER['HTTP_HOST']
             );
 
