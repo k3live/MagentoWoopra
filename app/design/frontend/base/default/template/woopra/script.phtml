@@ -57,9 +57,9 @@ function woopraReady(tracker) {
 <?php if ($this->getSetting('visitor_timeout') != NULL) { ?>    tracker.setIdleTimeout(<?php echo $this->getSetting('visitor_timeout') * 60 * 1000; ?>);<?php echo "\n"; ?>
 <?php } else { ?>    tracker.setIdleTimeout(1800000);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('subdomain') != NULL) { ?>    tracker.option(<?php echo $this->getSetting('subdomain'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('name') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('email') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
-<?php if ($this->getSetting('company') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_name') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_email') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('customer_company') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_location') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerLocation(); ?>', '<?php echo $this->getSetting('customer_location'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_phone') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerPhone(); ?>', '<?php echo $this->getSetting('customer_phone'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_group') != NULL) { ?>    tracker.addVisitorProperty('<?php echo Mage::helper('woopra')->getCustomerGroup(); ?>', '<?php echo $this->getSetting('customer_group'); ?>');<?php echo "\n"; } ?>

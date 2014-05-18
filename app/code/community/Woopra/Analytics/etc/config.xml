@@ -84,9 +84,9 @@
                 <outgoing_tracking_pause></outgoing_tracking_pause>
             </woopra_advanced>
             <woopra_outputs>
-                <customer_name>customer_name</customer_name>
-                <customer_email>customer_email</customer_email>
-                <customer_company>customer_company</customer_company>
+                <customer_name>name</customer_name>
+                <customer_email>email</customer_email>
+                <customer_company>company</customer_company>
                 <customer_location>customer_location</customer_location>
                 <customer_phone>customer_phone</customer_phone>
                 <customer_group>customer_group</customer_group>
