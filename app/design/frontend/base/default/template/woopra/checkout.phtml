@@ -1,0 +1,49 @@
+<?php
+/**
+ * Woopra Module for Magento
+ *
+ * @package     Woopra_Analytics
+ * @author      K3Live for Woopra
+ * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @license     Open Software License (OSL 3.0)
+ */
+?>
+<?php if($this->getSetting('enabled')) { ?>
+<!-- Start of Woopra Code -->
+<?php if ($this->getSetting('woopra_checkout_trigger') == 1) { ?>
+<script type="text/javascript">
+//<![CDATA[
+Checkout.prototype.gotoSection = function (section) {
+    woopra_action = section;
+    if (woopra_action == '')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutBillingAddress(); ?>';
+    else if (woopra_action == 'billing')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutBillingAddress(); ?>';
+    else if (woopra_action == 'shipping')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutShippingAddress(); ?>';
+    else if (woopra_action == 'shipping_method')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutShippingMethod(); ?>';
+    else if (woopra_action == 'payment')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutPaymentMethod(); ?>';
+    else if (woopra_action == 'review')
+        woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutReview(); ?>';
+    try {
+        woopra.track({
+            name: ''+woopra_action+''
+        });
+    } catch(err) { }
+    //section = $('opc-'+section);
+    //section.addClassName('allow');
+    //this.accordion.openSection(section);
+
+    this.currentStep = section;
+    var sectionElement = $('opc-' + section);
+    sectionElement.addClassName('allow');
+    this.accordion.openSection('opc-' + section);
+    this.reloadProgressBlock(section);
+};
+//]]>
+</script>
+<?php } ?>
+<!-- End of Woopra Code -->
+<?php } ?>
