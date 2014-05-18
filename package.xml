@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Woopra_Analytics_Event_And_Visitor_Tracking</name>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/OSL-3.0">Open Software License (OSL)</license>
     <channel>community</channel>
@@ -18,12 +18,16 @@ Access custom reports instantly. No more bugging IT. No old-school interfaces. N
 &lt;br /&gt;&#xD;
 &lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.magentocommerce.com/magento-connect/media/catalog/product/w/o/woopra_tracking_5_1_1.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&#xD;
 Note: This module will not work without a subscription to the &lt;a href="http://www.woopra.com/?woo_campaign=affiliate&amp;woo_medium=referral&amp;woo_source=k3live"&gt;Woopra&lt;/a&gt; service.</description>
-    <notes>Updated reserved properties customer_name, customer_email, customer_company to name, email, company.&#xD;
-Moved page view track to before custom event track.</notes>
+    <notes>Updated javascript tracking code.&#xD;
+Moved script to header, loads async, can capture tracking data if user navigates away before page load complete.&#xD;
+Updated reserved properties (again) customer_name, customer_email, customer_company to name, email, company.&#xD;
+Modified shopping cart and wishlist to send values even if empty in order to show correct values when everything is removed.&#xD;
+Corrected undefined variables for wishlistItems and wishListTotal.&#xD;
+Corrected undefined property for $_orderStateValue by adding setOrderStateFilter to $customerTotals, used when pulling Customer Lifetime data.</notes>
     <authors><author><name>Woopra</name><user>Woopra</user><email>support@k3live.com</email></author><author><name>K3Live</name><user>K3Live</user><email>support@k3live.com</email></author></authors>
-    <date>2013-07-09</date>
-    <time>23:04:02</time>
-    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="a63b357f5c16bbed150b6bc3042b685a"/></dir><dir name="Helper"><file name="Data.php" hash="be8537fcc78c89b27604ac914f071e7b"/></dir><dir name="Model"><file name="Observer.php" hash="d0fa66a3110f759206bf39572fa10276"/></dir><dir name="etc"><file name="config.xml" hash="13020b9b9ee2dface0bd8a47bee08ca9"/><file name="system.xml" hash="df7c2385788799a7805889ffdaced707"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="2e2a05eaee9dc48e9aba6f24b66fd9e3"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="93a56b728d139060084de667270bf74e"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="a4715864833c0024017692871431cb91"/></dir></dir></target></contents>
+    <date>2013-07-30</date>
+    <time>05:44:30</time>
+    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="13b47ea6e19b2a7ecd2b5ab47e194cf0"/></dir><dir name="Helper"><file name="Data.php" hash="368415028736bb52bd2cffe4fb484f61"/></dir><dir name="Model"><file name="Observer.php" hash="d0fa66a3110f759206bf39572fa10276"/></dir><dir name="etc"><file name="config.xml" hash="fcf71436b2e0c8094afb8ea3a13fe24d"/><file name="system.xml" hash="6181e9cbc760b70323ed6136b4b68f5e"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="59e9f7587e22ae4a1afa80e01cc79d7b"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="96b6477c0652d1082c235bd3dee993a5"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="a4715864833c0024017692871431cb91"/></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>
