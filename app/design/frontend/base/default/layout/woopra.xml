@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Woopra Module for Magento
+ *
+ * @package     Woopra_Analytics
+ * @author      K3Live for Woopra
+ * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @license     Open Software License (OSL 3.0)
+ */
+-->
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="woopra/script" name="woopra" as="woopra" template="woopra/script.phtml"/>
+        </reference>
+    </default>
+</layout>

@@ -1,0 +1,628 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Woopra Module for Magento
+ *
+ * @package     Woopra_Analytics
+ * @author      K3Live for Woopra
+ * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @license     Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <tabs>
+        <woopra translate="label" module="woopra">
+            <label>Woopra</label>
+            <sort_order>100</sort_order>
+        </woopra>
+    </tabs>
+    <sections>
+        <woopra_analytics translate="label" module="woopra">
+            <label>Woopra Analytics</label>
+            <tab>woopra</tab>
+            <sort_order>1001</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <woopra translate="label" module="woopra">
+                    <label>Basic Woopra Setup</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                    	<enabled translate="label">
+                            <label>Enable Module:</label>
+                            <comment>Enable or disable the Woopra module.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <hostname translate="label">
+                            <label>Hostname</label>
+                            <comment>Enter hostname to track (ie: example.com).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hostname>
+                        <account_id translate="label">
+                            <label>Woopra API key</label>
+                            <comment>Your API key can be found on woopra.com under My Websites -> Setup -> API Key.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-alphanum</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id>
+                        <test translate="label">
+                            <label>Show Test Alert</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </test>
+                    </fields>
+                </woopra>
+                <woopra_advanced translate="label" module="woopra">
+                    <label>Advanced Woopra Setup</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>0</expanded>
+                    <fields>
+                        <subdomain translate="label">
+                            <label>Subdomain Aggregation</label>
+                            <comment>Enter subdomain and root domain to track (ie: 'subdomain', 'rootdomain.com'). Note: Surround subdomain and root domain with apostrophes, separated by a comma!</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subdomain>
+                        <visitor_timeout translate="label">
+                            <label>Visitor Timeout</label>
+                            <comment>The idle time in minutes after which visitors are considered no longer on your website. (Default: 30)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </visitor_timeout>
+                        <track_url_parameters translate="label">
+                            <label>Track URL Parameters</label>
+                            <comment>Include queries in the url. (Default No)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </track_url_parameters>
+                        <tracking_cookie_expiration translate="label">
+                            <label>Tracking Cookie Expiration</label>
+                            <comment>The tracking cookie expiration in days (Default: 365)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tracking_cookie_expiration>
+                        <tracking_cookie_name translate="label">
+                            <label>Tracking Cookie Name</label>
+                            <comment>Change the name of the cookie stored by Woopra (Default: woopraTracker)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tracking_cookie_name>
+                        <tracking_cookie_domain translate="label">
+                            <label>Tracking Cookie Domain</label>
+                            <comment>Change the tracking cookie domain</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tracking_cookie_domain>
+                        <tracking_cookie_path translate="label">
+                            <label>Tracking Cookie Path</label>
+                            <comment>Change the tracking cookie path (Default: /)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tracking_cookie_path>
+                        <ping translate="label">
+                            <label>Ping</label>
+                            <comment>Enable/Disable the periodic pings (Default: Enable)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ping>
+                        <ping_interval translate="label">
+                            <label>Ping Interval</label>
+                            <comment>Change ping interval (Default: 12000 milliseconds)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits</validate>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ping_interval>
+                        <download_tracking translate="label">
+                            <label>Download Tracking</label>
+                            <comment>Enable/Disable download tracking (Default: Enable)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </download_tracking>
+                        <download_tracking_pause translate="label">
+                            <label>Download Tracking Pause</label>
+                            <comment>Change download pause to guarantee the tracking request is sent (Default: 200 milliseconds)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits</validate>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </download_tracking_pause>
+                        <outgoing_tracking translate="label">
+                            <label>Outgoing Link Tracking</label>
+                            <comment>Enable/Disable outgoing links tracking (Default: Enable)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </outgoing_tracking>
+                        <outgoing_tracking_pause translate="label">
+                            <label>Outgoing Link Tracking Pause</label>
+                            <comment>Change outgoing link pause to guarantee the tracking request is sent (Default: 200 milliseconds)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits</validate>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </outgoing_tracking_pause>
+                    </fields>
+                </woopra_advanced>
+                <woopra_outputs translate="label" module="woopra">
+                    <label>Name/Disable Woopra Outputs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>0</expanded>
+                    <comment>You can disable outputs here that you do not want to use. On some servers a performance gain may be noticed by disabling unused calls.</comment>
+                    <fields>
+                        <customer_name translate="label">
+                            <label>Customer Name</label>
+                            <comment>Customer name output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_name>
+                        <customer_email translate="label">
+                            <label>Customer Email</label>
+                            <comment>Customer email output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_email>
+                        <customer_company translate="label">
+                            <label>Customer Company</label>
+                            <comment>Customer company output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_company>
+                        <customer_location translate="label">
+                            <label>Customer Location</label>
+                            <comment>Customer location output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_location>
+                        <customer_phone translate="label">
+                            <label>Customer Phone</label>
+                            <comment>Customer phone output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_phone>
+                        <customer_group translate="label">
+                            <label>Customer Group</label>
+                            <comment>Customer group output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_group>
+                        <customer_lifetime_sales translate="label">
+                            <label>Lifetime Sales</label>
+                            <comment>Customer lifetime sales output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_lifetime_sales>
+                        <customer_number_orders translate="label">
+                            <label>Lifetime Orders Placed</label>
+                            <comment>Customer number of orders output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_number_orders>
+                        <customer_create_date translate="label">
+                            <label>Create Account Date</label>
+                            <comment>Customer account creation date output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_create_date>
+                        <customer_cart_items translate="label">
+                            <label>Total Items in Cart</label>
+                            <comment>Customer total items in cart output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_cart_items>
+                        <customer_cart_total translate="label">
+                            <label>Cart Total</label>
+                            <comment>Customer cart total output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_cart_total>
+                        <customer_wishlist_items translate="label">
+                            <label>Total Items in Wishlist</label>
+                            <comment>Customer total items in wishlist output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_wishlist_items>
+                        <customer_wishlist_total translate="label">
+                            <label>Wishlist Total</label>
+                            <comment>Customer wishlist total output name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_wishlist_total>
+                    </fields>
+                </woopra_outputs>
+                <woopra_events translate="label" module="woopra">
+                    <label>Name/Disable Woopra Event Tracking</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>0</expanded>
+                    <comment>You can disable event tracking here that you do not want to use. On some servers a performance gain may be noticed by disabling unused calls.</comment>
+                    <fields>
+                        <catalog_search translate="label">
+                            <label>Catalog Search</label>
+                            <comment>Catalog search event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </catalog_search>
+                        <changed_password translate="label">
+                            <label>Changed Password</label>
+                            <comment>Changed password event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </changed_password>
+                        <checkout_billing_address translate="label">
+                            <label>Checkout Billing Address</label>
+                            <comment>Checkout step billing address event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_billing_address>
+                        <checkout_shipping_address translate="label">
+                            <label>Checkout Shipping Address</label>
+                            <comment>Checkout step shipping address event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_shipping_address>
+                        <checkout_shipping_method translate="label">
+                            <label>Checkout Shipping Method</label>
+                            <comment>Checkout step billing address event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_shipping_method>
+                        <checkout_payment_method translate="label">
+                            <label>Checkout Payment Method</label>
+                            <comment>Checkout step payment method event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_payment_method>
+                        <checkout_review translate="label">
+                            <label>Checkout Review</label>
+                            <comment>Checkout step review event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_review>
+                        <checkout_success translate="label">
+                            <label>Checkout Success</label>
+                            <comment>Checkout success event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_success>
+                        <cms_no_route translate="label">
+                            <label>CMS No Route</label>
+                            <comment>CMS no route (404) event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cms_no_route>
+                        <contact_form_sent translate="label">
+                            <label>Contact Form Sent</label>
+                            <comment>Contact form sent event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </contact_form_sent>
+                        <coupon_added translate="label">
+                            <label>Coupon Code Added</label>
+                            <comment>Coupon code added event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </coupon_added>
+                        <coupon_removed translate="label">
+                            <label>Coupon Code Removed</label>
+                            <comment>Coupon code removed event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </coupon_removed>
+                        <customer_create_account translate="label">
+                            <label>Customer Create Account</label>
+                            <comment>Customer create account event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_create_account>
+                        <customer_create_account_success translate="label">
+                            <label>Customer Create Account Success</label>
+                            <comment>Customer create account success event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>125</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_create_account_success>
+                        <customer_login translate="label">
+                            <label>Customer Login</label>
+                            <comment>Customer login event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_login>
+                        <customer_logout translate="label">
+                            <label>Customer Logout</label>
+                            <comment>Customer logout event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_logout>
+                        <estimate_post translate="label">
+                            <label>Estimate Post</label>
+                            <comment>Estimate post event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </estimate_post>
+                        <forgot_password translate="label">
+                            <label>Forgot Password</label>
+                            <comment>Forgot password event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </forgot_password>
+                        <newsletter_subscribed translate="label">
+                            <label>Newsletter Subscribed</label>
+                            <comment>Newsletter subscribed event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newsletter_subscribed>
+                        <newsletter_unsubscribed translate="label">
+                            <label>Newsletter Unsubscribed</label>
+                            <comment>Newsletter unsubscribed event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newsletter_unsubscribed>
+                        <poll_vote translate="label">
+                            <label>Poll Vote</label>
+                            <comment>Poll vote event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </poll_vote>
+                        <product_added_to_cart translate="label">
+                            <label>Product Added To Cart</label>
+                            <comment>Product added to cart event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>195</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_added_to_cart>
+                        <product_removed_from_cart translate="label">
+                            <label>Product Removed From Cart</label>
+                            <comment>Product removed from cart event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_removed_from_cart>
+                        <product_added_to_compare translate="label">
+                            <label>Product Added To Compare</label>
+                            <comment>Product added to compare event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_added_to_compare>
+                        <product_removed_from_compare translate="label">
+                            <label>Product Removed From Compare</label>
+                            <comment>Product removed from compare event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_removed_from_compare>
+                        <product_added_to_wishlist translate="label">
+                            <label>Product Added To Wishlist</label>
+                            <comment>Product added to wishlist event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_added_to_wishlist>
+                        <product_removed_from_wishlist translate="label">
+                            <label>Product Removed From Wishlist</label>
+                            <comment>Product removed from wishlist event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_removed_from_wishlist>
+                        <product_tag_added translate="label">
+                            <label>Product Tag Added</label>
+                            <comment>Product tag added event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_tag_added>
+                        <product_review_read translate="label">
+                            <label>Product Review Read</label>
+                            <comment>Product review read event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>260</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_review_read>
+                        <product_review_posted translate="label">
+                            <label>Product Review Posted</label>
+                            <comment>Product review posted event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_review_posted>
+                    </fields>
+                </woopra_events>
+            </groups>
+        </woopra_analytics>
+    </sections>
+</config>

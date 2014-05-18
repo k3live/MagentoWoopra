@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+    <name>Woopra_Analytics_Event_And_Visitor_Tracking</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/OSL-3.0">Open Software License (OSL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Track each step users take from anonymous visitor to converted unique customer with Woopra realtime analytics.</summary>
+    <description>Woopra has created the most advanced analytics tool on the Magento platform. This extension enables Woopra to build a comprehensive, real-time profile and timeline for every visitor. Tracking users from anonymous visitor, to converted unique customer. Watch each step a visitor takes and step-in to assist when needed with built-in real-time chat. Discover which customers are high-value, which ones are ready to purchase, and which ones are at risk of leaving.&lt;br /&gt;&#xD;
+&lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.woopra.com/wp-content/uploads/2012/10/profile-v3-pile.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&#xD;
+A stunning real-time live dashboard delivers key real-time stats in a glance, while a simple click will break any metric down to an individual-level view.&lt;br /&gt;&#xD;
+&lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.woopra.com/wp-content/uploads/2012/09/woopra-dashboard.png" /&gt;&lt;/a&gt;&lt;br /&gt;&#xD;
+Gauge the level of activity of important customer segments currently engaged with your website and dig deeper to discover the users behind the numbers.&lt;br /&gt;&lt;br /&gt;&#xD;
+Use Retention Analytics, Funnel Analytics and Segmented Analytics to discover customer behavior. Unlike any other service, Woopra allows you to drill reports down to the individual level and export lists or automate, making your analytics directly actionable.&lt;br /&gt;&#xD;
+&lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.woopra.com/wp-content/uploads/2012/09/woopra-analytics.png" /&gt;&lt;/a&gt;&lt;br /&gt;&#xD;
+Access custom reports instantly. No more bugging IT. No old-school interfaces. No waiting for answers. Just the tools you need to make things happen.&lt;br /&gt;&#xD;
+&lt;br /&gt;&#xD;
+&lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.magentocommerce.com/magento-connect/media/catalog/product/w/o/woopra_tracking_5_1_1.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&#xD;
+Note: This module will not work without a subscription to the &lt;a href="http://www.woopra.com/?woo_campaign=affiliate&amp;woo_medium=referral&amp;woo_source=k3live"&gt;Woopra&lt;/a&gt; service.</description>
+    <notes>Initial Public Release</notes>
+    <authors><author><name>Woopra</name><user>Woopra</user><email>support@k3live.com</email></author><author><name>K3Live</name><user>K3Live</user><email>support@k3live.com</email></author></authors>
+    <date>2013-05-25</date>
+    <time>07:17:26</time>
+    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="a63b357f5c16bbed150b6bc3042b685a"/></dir><dir name="Helper"><file name="Data.php" hash="be8537fcc78c89b27604ac914f071e7b"/></dir><dir name="Model"><file name="Observer.php" hash="d0fa66a3110f759206bf39572fa10276"/></dir><dir name="etc"><file name="config.xml" hash="fe6ba38e23d9e35e4a1843fe9273acb6"/><file name="system.xml" hash="526dceb67dcbeda11aad1d4648ff105e"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="2e2a05eaee9dc48e9aba6f24b66fd9e3"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="c07f622dfcdb07f8a3119140c2fd65ea"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="a4715864833c0024017692871431cb91"/></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
