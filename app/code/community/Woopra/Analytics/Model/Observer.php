@@ -19,11 +19,11 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             if ($model->getIsStatusChanged() == 1 && $model->getData(subscriber_status) == 1) {
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_changed', 1);
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_status', Mage::helper('woopra')->getNewsletterSubscribed());
-                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', $subscriber_email);
+                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', Mage::helper('core')->escapeHtml(addslashes($subscriber_email)));
             } else if ($model->getIsStatusChanged() == 1 && $model->getData(subscriber_status) == 3) {
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_changed', 1);
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_status', Mage::helper('woopra')->getNewsletterUnsubscribed());
-                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', $subscriber_email);
+                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', Mage::helper('core')->escapeHtml(addslashes($subscriber_email)));
             } else {
             }
         }
@@ -50,10 +50,10 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
     		$request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
                 Mage::getSingleton('core/session')->setData('woopra_contacts_index_post', 1);
-                Mage::getSingleton('core/session')->setData('woopra_contacts_name', addslashes($request['name']));
-                Mage::getSingleton('core/session')->setData('woopra_contacts_email', $request['email']);
-                Mage::getSingleton('core/session')->setData('woopra_contacts_telephone', addslashes($request['telephone']));
-                Mage::getSingleton('core/session')->setData('woopra_contacts_comment', addslashes($request['comment']));
+                Mage::getSingleton('core/session')->setData('woopra_contacts_name', Mage::helper('core')->escapeHtml(addslashes($request['name'])));
+                Mage::getSingleton('core/session')->setData('woopra_contacts_email', Mage::helper('core')->escapeHtml(addslashes($request['email'])));
+                Mage::getSingleton('core/session')->setData('woopra_contacts_telephone', Mage::helper('core')->escapeHtml(addslashes($request['telephone'])));
+                Mage::getSingleton('core/session')->setData('woopra_contacts_comment', Mage::helper('core')->escapeHtml(addslashes($request['comment'])));
                 //Mage::log($request['name']." | ".$request['email']." | ".$request['telephone']." | ".$request['comment'], null, 'woopra.log');
             }
     	}
@@ -196,7 +196,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
         	$request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
                 Mage::getSingleton('core/session')->setData('woopra_search_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_search_keywords', addslashes($request['q']));
+                Mage::getSingleton('core/session')->setData('woopra_search_keywords', Mage::helper('core')->escapeHtml(addslashes($request['q'])));
                 //Mage::log($request['q'], null, 'woopra.log');
             }
         }
@@ -216,7 +216,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                     $search_keywords = $search_keywords." | ".$key.": ".$answer;
                 }
                 Mage::getSingleton('core/session')->setData('woopra_search_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_search_keywords', addslashes($search_keywords));
+                Mage::getSingleton('core/session')->setData('woopra_search_keywords', Mage::helper('core')->escapeHtml(addslashes($search_keywords)));
                 //Mage::log($search_keywords, null, 'woopra.log');
             }
         }
@@ -246,9 +246,9 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
     			Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
     			Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
                 Mage::getSingleton('core/session')->setData('woopra_product_review_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_product_review_nickname', addslashes($request['nickname']));
-                Mage::getSingleton('core/session')->setData('woopra_product_review_title', addslashes($request['title']));
-                Mage::getSingleton('core/session')->setData('woopra_product_review_detail', addslashes($request['detail']));
+                Mage::getSingleton('core/session')->setData('woopra_product_review_nickname', Mage::helper('core')->escapeHtml(addslashes($request['nickname'])));
+                Mage::getSingleton('core/session')->setData('woopra_product_review_title', Mage::helper('core')->escapeHtml(addslashes($request['title'])));
+                Mage::getSingleton('core/session')->setData('woopra_product_review_detail', Mage::helper('core')->escapeHtml(addslashes($request['detail'])));
     			//Mage::log($product['name']." | ".$product['sku']." | ".round($product['price'], 2)." | ".$request['nickname']." | ".$request['title']." | ".$request['detail'], null, 'woopra.log');
             }
         }
@@ -258,7 +258,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
         	$request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             	Mage::getSingleton('core/session')->setData('woopra_forgot_password_trigger', 1);
             if ($request) {
-                Mage::getSingleton('core/session')->setData('woopra_forgot_password_email', $request['email']);
+                Mage::getSingleton('core/session')->setData('woopra_forgot_password_email', Mage::helper('core')->escapeHtml(addslashes($request['email'])));
                 //Mage::log($request['email'], null, 'woopra.log');
             }
         }
@@ -283,7 +283,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                 Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
                 Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
                 Mage::getSingleton('core/session')->setData('woopra_product_tag_added_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_product_tag_name', addslashes($request['productTagName']));
+                Mage::getSingleton('core/session')->setData('woopra_product_tag_name', Mage::helper('core')->escapeHtml(addslashes($request['productTagName'])));
                 //Mage::log($product['name']." | ".$product['sku']." | ".round($product['price'], 2)." | ".$request['productTagName'], null, 'woopra.log');
             }
         }
@@ -317,7 +317,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                     Mage::getSingleton('core/session')->setData('woopra_coupon_code_name', '-');
                     Mage::getSingleton('core/session')->setData('woopra_coupon_code_active', '-');
                 }
-                Mage::getSingleton('core/session')->setData('woopra_coupon_code', addslashes($request['coupon_code']));
+                Mage::getSingleton('core/session')->setData('woopra_coupon_code', Mage::helper('core')->escapeHtml(addslashes($request['coupon_code'])));
                 //Mage::log($observer, null, 'woopra.log');
             }
         }
@@ -335,7 +335,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             if ($request['is_subscribed'] == 1) {
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_changed', 1);
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_status', Mage::helper('woopra')->getNewsletterSubscribed());
-                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', $request[email]);
+                Mage::getSingleton('core/session')->setData('woopra_subscriber_email', Mage::helper('core')->escapeHtml(addslashes($request[email])));
             }
             //Mage::log($request, null, 'woopra.log');
         }
@@ -348,7 +348,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                 Mage::getSingleton('core/session')->setData('woopra_estimate_post_trigger', 1);
                 Mage::getSingleton('core/session')->setData('woopra_estimate_post_country', $request['country_id']);
                 Mage::getSingleton('core/session')->setData('woopra_estimate_post_state', $region->getName());
-                Mage::getSingleton('core/session')->setData('woopra_estimate_post_zip', $request['estimate_postcode']);
+                Mage::getSingleton('core/session')->setData('woopra_estimate_post_zip', Mage::helper('core')->escapeHtml($request['estimate_postcode']));
                 //Mage::log($request['country_id']." | ".$region->getName()." | ".$request['estimate_postcode'], null, 'woopra.log');
             }
         }
@@ -378,6 +378,19 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                 Mage::getSingleton('core/session')->setData('woopra_poll_vote_title', addslashes($poll_title['poll_title']));
                 Mage::getSingleton('core/session')->setData('woopra_poll_vote_answer', addslashes($answer_title));
                 //Mage::log($poll_title['poll_title']." | ".$answer_title, null, 'woopra.log');
+            }
+        }
+
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'sendfriend_product_sendmail' && Mage::helper('woopra')->getProductEmailToFriend() != NULL)
+        {
+            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
+            if ($request) {
+                $product = Mage::getModel('catalog/product')->load($request['id'])->getData();
+                Mage::getSingleton('core/session')->setData('woopra_sendfriend_product_name', addslashes($product['name']));
+                Mage::getSingleton('core/session')->setData('woopra_sendfriend_product_sku', addslashes($product['sku']));
+                Mage::getSingleton('core/session')->setData('woopra_sendfriend_product_price', round($product['price'], 2));
+                Mage::getSingleton('core/session')->setData('woopra_sendfriend_product_trigger', 1);
+                //Mage::log($request, null, 'woopra.log');
             }
         }
 
