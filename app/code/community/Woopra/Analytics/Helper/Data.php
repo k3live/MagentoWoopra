@@ -266,4 +266,8 @@ class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('woopra_analytics/woopra_events/product_review_posted');
     }
+    public function getProductEmailToFriend()
+    {
+        return Mage::getStoreConfig('woopra_analytics/woopra_events/sendfriend_product');
+    }
 }
