@@ -15,7 +15,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
         if (Mage::helper('woopra')->getNewsletterSubscribed() != NULL) {
             $event = $observer->getEvent();
             $model = $event->getSubscriber();
-            $subscriber_email = $model->getData(subscriber_email);
+            $subscriber_email = $model->getData('subscriber_email');
             if ($model->getIsStatusChanged() == 1 && $model->getData(subscriber_status) == 1) {
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_changed', 1);
                 Mage::getSingleton('core/session')->setData('woopra_subscriber_status', Mage::helper('woopra')->getNewsletterSubscribed());
@@ -380,6 +380,15 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                 //Mage::log($poll_title['poll_title']." | ".$answer_title, null, 'woopra.log');
             }
         }
+
+        /* Payment Status Coming Soon
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_onepage_saveOrder')
+        {
+            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
+            if ($request) {
+                Mage::log($request, null, 'woopra.log');
+            }
+        }*/
 
         /* Send tracking events during checkout using HTTP Tracking API - Coming One Day(TM)
         if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_onepage_progress')
