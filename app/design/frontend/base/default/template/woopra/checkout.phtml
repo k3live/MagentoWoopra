@@ -13,7 +13,11 @@
 <?php if ($this->getSetting('woopra_checkout_trigger') == 1) { ?>
 <script type="text/javascript">
 //<![CDATA[
+<?php if(version_compare(Mage::getVersion(), '1.9') > 0) { ?>
+Checkout.prototype.gotoSection = function (section, reloadProgressBlock) {
+<?php } else { ?>
 Checkout.prototype.gotoSection = function (section) {
+<?php } ?>
     woopra_action = section;
     if (woopra_action == '')
         woopra_action = '<?php echo Mage::helper('woopra')->getCheckoutBillingAddress(); ?>';
@@ -32,11 +36,24 @@ Checkout.prototype.gotoSection = function (section) {
             name: ''+woopra_action+''
         });
     } catch(err) { }
+<?php if(version_compare(Mage::getVersion(), '1.9') > 0) { ?>
+    if (reloadProgressBlock) {
+            this.reloadProgressBlock(this.currentStep);
+        }
+        this.currentStep = section;
+        var sectionElement = $('opc-' + section);
+        sectionElement.addClassName('allow');
+        this.accordion.openSection('opc-' + section);
+        if(!reloadProgressBlock) {
+            this.resetPreviousSteps();
+        }
+<?php } else { ?>
     this.currentStep = section;
     var sectionElement = $('opc-' + section);
     sectionElement.addClassName('allow');
     this.accordion.openSection('opc-' + section);
     this.reloadProgressBlock(section);
+<?php } ?>
 };
 //]]>
 </script>
