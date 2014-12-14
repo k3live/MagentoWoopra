@@ -121,6 +121,12 @@
 <?php if ($this->getSetting('woopra_login_logout_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo $this->getSetting('woopra_login_logout_status'); ?>'
 <?php echo "    });\n"; } ?>
+<?php if ($this->getSetting('woopra_sendfriend_product_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
+        name: '<?php echo Mage::helper('woopra')->getProductEmailToFriend(); ?>',
+        product_name: '<?php echo $this->getSetting('woopra_sendfriend_product_name'); ?>',
+        product_sku: '<?php echo $this->getSetting('woopra_sendfriend_product_sku'); ?>',
+        product_price: '<?php echo $this->getSetting('woopra_sendfriend_product_price'); ?>'
+<?php echo "    });\n"; } ?>
 <?php if ($this->getSetting('woopra_checkout_success_trigger') == 1) { ?>    woopra.track({<?php echo "\n";?>
         name: '<?php echo Mage::helper('woopra')->getCheckoutSuccess(); ?>',
 <?php if ($this->getSetting('woopra_checkout_success_coupon_code') != NULL) { ?>        coupon_code: '<?php echo $this->getSetting('woopra_checkout_success_coupon_code'); ?>',<?php echo "\n"; } ?>
