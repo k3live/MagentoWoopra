@@ -134,6 +134,7 @@
                 <product_tag_added>magento product_tag_added</product_tag_added>
                 <product_review_read>magento product_review_read</product_review_read>
                 <product_review_posted>magento product_review_posted</product_review_posted>
+                <sendfriend_product>magento sendfriend_product</sendfriend_product>
             </woopra_events>
         </woopra_analytics>
     </default>
