@@ -669,6 +669,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </product_review_posted>
+                        <sendfriend_product translate="label">
+                            <label>Product Email to Friend</label>
+                            <comment>Product email to a friend event tracking name (empty to disable).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>280</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sendfriend_product>
                     </fields>
                 </woopra_events>
             </groups>
