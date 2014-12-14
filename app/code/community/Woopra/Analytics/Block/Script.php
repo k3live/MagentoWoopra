@@ -68,7 +68,7 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
             if(!empty($customer)) {
                 //Customer Name
                 if ($customer->getName() != ' ' && Mage::helper('woopra')->getCustomerName() != NULL) {
-                    $data['customer_name'] = $customer->getName();
+                    $data['customer_name'] = Mage::helper('core')->escapeHtml(addslashes($customer->getName()));
                 }
                 //Customer Email
                 if (Mage::helper('woopra')->getCustomerEmail() != NULL) {
@@ -83,15 +83,15 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                 if(!empty($address)) {
                     //Customer Company
                     if (Mage::helper('woopra')->getCustomerCompany() != NULL) {
-                        $data['customer_company'] = $address->getCompany();
+                        $data['customer_company'] = Mage::helper('core')->escapeHtml(addslashes($address->getCompany()));
                     }
                     //Customer Location
                     if (Mage::helper('woopra')->getCustomerLocation() != NULL) {
-                        $data['customer_location'] = $address->getCity() . ', ' . $address->getRegion() . ' (' . $address->getCountryId() . ')';
+                        $data['customer_location'] = Mage::helper('core')->escapeHtml(addslashes($address->getCity())) . ', ' . Mage::helper('core')->escapeHtml(addslashes($address->getRegion())) . ' (' . $address->getCountryId() . ')';
                     }
                     //Customer Phone
                     if (Mage::helper('woopra')->getCustomerPhone() != NULL) {
-                        $data['customer_phone'] = $address->getTelephone();
+                        $data['customer_phone'] = Mage::helper('core')->escapeHtml(addslashes($address->getTelephone()));
                     }
                 }
 
@@ -99,7 +99,7 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                 if (Mage::helper('woopra')->getCustomerGroup() != NULL) {
                     $groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
                     $group = Mage::getModel('customer/group')->load($groupId);
-                    $data['customer_group'] = $group->getCode();
+                    $data['customer_group'] = addslashes($group->getCode());
                 }
 
                 //Customer Account Creation Date
@@ -110,7 +110,7 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                         true
                         );
                     if(strtotime($date) != Mage::app()->getLocale()->storeTimeStamp()) {
-                        $data['customer_create_date'] = Mage::helper('core')->formatDate($date, Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true);
+                        $data['customer_create_date'] = addslashes(Mage::helper('core')->formatDate($date, Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
                     }
                 }
 
@@ -160,7 +160,7 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
             //Current Catagory
             $currentCategory = Mage::registry('current_category');
             if(!empty($currentCategory)) {
-                $data['category'] = $currentCategory->getName();
+                $data['category'] = addslashes($currentCategory->getName());
             }
             //Current Product
             $currentProduct = Mage::registry('current_product');
@@ -294,6 +294,14 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                 $data['woopra_estimate_post_country'] = Mage::getSingleton('core/session')->getData('woopra_estimate_post_country', true);
                 $data['woopra_estimate_post_state'] = Mage::getSingleton('core/session')->getData('woopra_estimate_post_state', true);
                 $data['woopra_estimate_post_zip'] = Mage::getSingleton('core/session')->getData('woopra_estimate_post_zip', true);
+            }
+
+            //Product Email to Friend
+            if (Mage::helper('woopra')->getProductEmailToFriend() != NULL) {
+            $data['woopra_sendfriend_product_trigger'] = Mage::getSingleton('core/session')->getData('woopra_sendfriend_product_trigger', true);
+            $data['woopra_sendfriend_product_name'] = Mage::getSingleton('core/session')->getData('woopra_sendfriend_product_name', true);
+            $data['woopra_sendfriend_product_sku'] = Mage::getSingleton('core/session')->getData('woopra_sendfriend_product_sku', true);
+            $data['woopra_sendfriend_product_price'] = Mage::getSingleton('core/session')->getData('woopra_sendfriend_product_price', true);
             }
         }
 
