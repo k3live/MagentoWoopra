@@ -4,7 +4,7 @@
  *
  * @package     Woopra_Analytics
  * @author      K3Live for Woopra
- * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @copyright   Copyright (c) 2015 Woopra (http://www.woopra.com/)
  * @license     Open Software License (OSL 3.0)
  */
 ?>
@@ -29,7 +29,7 @@
 <?php if ($this->getSetting('outgoing_ignore_subdomain') == 0) { ?>    woopra.config('outgoing_ignore_subdomain', false);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('hide_campaign') == 1) { ?>    woopra.config('hide_campaign', true);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('hostname') != NULL) { ?>    woopra.config('domain', '<?php echo $this->getSetting('hostname'); ?>');<?php echo "\n"; ?>
-<?php } else { ?>    woopra.config('domain', '<?php echo $this->getSetting('url'); ?>');<?php echo "\n"; } ?>
+<?php } else { ?>    woopra.config('domain', '');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('visitor_timeout') != NULL) { ?>    woopra.config('idle_timeout', <?php echo $this->getSetting('visitor_timeout') * 60 * 1000; ?>);<?php echo "\n"; ?>
 <?php } else { ?>    woopra.config('idle_timeout', 1800000);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('subdomain') != NULL) { ?>    woopra.identify('subdomain', '<?php echo $this->getSetting('subdomain'); ?>');<?php echo "\n"; } ?>

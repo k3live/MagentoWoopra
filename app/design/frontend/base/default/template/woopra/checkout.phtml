@@ -4,13 +4,13 @@
  *
  * @package     Woopra_Analytics
  * @author      K3Live for Woopra
- * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @copyright   Copyright (c) 2015 Woopra (http://www.woopra.com/)
  * @license     Open Software License (OSL 3.0)
  */
 ?>
 <?php if($this->getSetting('enabled')) { ?>
-<!-- Start of Woopra Code -->
 <?php if ($this->getSetting('woopra_checkout_trigger') == 1) { ?>
+<!-- Start of Woopra Code -->
 <script type="text/javascript">
 //<![CDATA[
 <?php if(version_compare(Mage::getVersion(), '1.9') > 0) { ?>
@@ -57,6 +57,6 @@ Checkout.prototype.gotoSection = function (section) {
 };
 //]]>
 </script>
-<?php } ?>
 <!-- End of Woopra Code -->
+<?php } ?>
 <?php } ?>

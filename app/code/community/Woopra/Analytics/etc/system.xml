@@ -5,7 +5,7 @@
  *
  * @package     Woopra_Analytics
  * @author      K3Live for Woopra
- * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @copyright   Copyright (c) 2015 Woopra (http://www.woopra.com/)
  * @license     Open Software License (OSL 3.0)
  */
 -->
@@ -34,7 +34,7 @@
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
                     <fields>
-                    	<enabled translate="label">
+                        <enabled translate="label">
                             <label>Enable Module:</label>
                             <comment>Enable or disable the Woopra module.</comment>
                             <frontend_type>select</frontend_type>
@@ -53,36 +53,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </hostname>
-                        <!--<app_id translate="label">
-                            <label>Woopra App ID</label>
-                            <comment>Your App ID can be found on woopra.com under My Websites -> Setup -> Access Keys.</comment>
-                            <frontend_type>text</frontend_type>
-                            <validate>validate-alphanum</validate>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </app_id>
-                        <secret_key translate="label">
-                            <label>Woopra Secret Key</label>
-                            <comment>Your Secret Key can be found on woopra.com under My Websites -> Setup -> Access Keys.</comment>
-                            <frontend_type>text</frontend_type>
-                            <validate>validate-alphanum</validate>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </secret_key>
-                        <schema_update translate="label">
-                            <label>Schema Update</label>
-                            <comment>Run schema update one time after install. Note: Requires App ID and Secret Key.</comment>
-                            <frontend_type>button</frontend_type>
-                            <frontend_model>woopra/button</frontend_model>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </schema_update>-->
                         <test translate="label">
                             <label>Show Test Alert</label>
                             <frontend_type>select</frontend_type>

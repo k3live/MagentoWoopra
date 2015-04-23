@@ -4,20 +4,12 @@
  *
  * @package     Woopra_Analytics
  * @author      K3Live for Woopra
- * @copyright   Copyright (c) 2013 Woopra (http://www.woopra.com/)
+ * @copyright   Copyright (c) 2015 Woopra (http://www.woopra.com/)
  * @license     Open Software License (OSL 3.0)
  */
 
 class Woopra_Analytics_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public function getAppId()
-    {
-        return Mage::getStoreConfig('woopra_analytics/woopra/app_id');
-    }
-    public function getSecretKey()
-    {
-        return Mage::getStoreConfig('woopra_analytics/woopra/secret_key');
-    }
     public function getEnabled()
     {
         return (bool)Mage::getStoreConfig('woopra_analytics/woopra/enabled');
