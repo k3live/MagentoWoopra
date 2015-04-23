@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Woopra_Analytics_Event_And_Visitor_Tracking</name>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/OSL-3.0">Open Software License (OSL)</license>
     <channel>community</channel>
@@ -18,11 +18,11 @@ Access custom reports instantly. No more bugging IT. No old-school interfaces. N
 &lt;br /&gt;&#xD;
 &lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.magentocommerce.com/magento-connect/media/catalog/product/w/o/woopra_tracking_5_1_1.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&#xD;
 Note: This module will not work without a subscription to the &lt;a href="http://www.woopra.com/?woo_campaign=affiliate&amp;woo_medium=referral&amp;woo_source=k3live"&gt;Woopra&lt;/a&gt; service.</description>
-    <notes>Checkout fix for info blocks in Magento 1.9 and greater</notes>
+    <notes>Undefined constant and variable fixes.</notes>
     <authors><author><name>Woopra</name><user>Woopra</user><email>support@woopra.com</email></author><author><name>K3Live</name><user>K3Live</user><email>support@k3live.com</email></author></authors>
-    <date>2014-12-09</date>
-    <time>04:29:54</time>
-    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="112352962ccd5bcf0e567f616888e580"/></dir><dir name="Helper"><file name="Data.php" hash="3b0ba17b1db831f88e6e58aa0c31143e"/></dir><dir name="Model"><file name="Observer.php" hash="717af31124d058b6b4dd00d56d2ce16f"/></dir><dir name="etc"><file name="config.xml" hash="27a46388dccfab8a95f7e8ab1337bc69"/><file name="system.xml" hash="7d3400279dab37ff34ccab127c5d049b"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="3f21344a558babd0d9ea0ed1edc6a87f"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="e59b67401b4189d70697fa6d1f766288"/><file name="checkout.phtml" hash="f41270457786b0f786c7e164e9f9ed78"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="a4715864833c0024017692871431cb91"/></dir></dir></target></contents>
+    <date>2015-04-22</date>
+    <time>06:53:00</time>
+    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="02c0d45470a447ae4f14e18f4abdc3d4"/></dir><dir name="Helper"><file name="Data.php" hash="de87ef2faeb806905627abb1644be4f6"/></dir><dir name="Model"><file name="Observer.php" hash="1712c8b9ae89c5d9722546c69ddf34f8"/></dir><dir name="etc"><file name="config.xml" hash="8117b57eba07e903586388c74136484e"/><file name="system.xml" hash="cb54ec73ff11b133cc864741f300896c"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="d9dc3de2af23a1991ab7785342086d40"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="2686a404f8b8e967c200d57fa1dfb55c"/><file name="checkout.phtml" hash="b3d7d026c4cf86f834a2a9d5f1d33f36"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="6f38d8633187db1ba9584af2341380a4"/></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>
