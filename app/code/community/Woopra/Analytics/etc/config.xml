@@ -12,7 +12,7 @@
 <config>
     <modules>
         <Woopra_Analytics>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </Woopra_Analytics>
     </modules>
     <global>
