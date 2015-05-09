@@ -85,15 +85,17 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             Mage::helper('woopra')->getProductRemovedFromCart() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
-                $productId = Mage::getModel('checkout/cart')
-                ->getQuote()->getItemById($request['id'])->getProduct()->getId();
-                $product = Mage::getModel('catalog/product')->load($productId)->getData();
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
-                    Mage::helper('woopra')->getProductRemovedFromCart());
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+                $quoteItemId = Mage::getModel('checkout/cart')->getQuote()->getItemById($request['id']);
+                if ($quoteItemId) {
+                    $productId = $quoteItemId->getProduct()->getId();
+                    $product = Mage::getModel('catalog/product')->load($productId)->getData();
+                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
+                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
+                        Mage::helper('woopra')->getProductRemovedFromCart());
+                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
+                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
+                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+                }
             }
         }
         
