@@ -235,6 +235,12 @@ class Woopra_Analytics_Block_Script extends Mage_Core_Block_Template
                     ->getData('woopra_checkout_success_total_items_ordered', true);
                 $data['woopra_checkout_success_profit'] = Mage::getSingleton('core/session')
                     ->getData('woopra_checkout_success_profit', true);
+                $data['woopra_checkout_success_guest_trigger'] = Mage::getSingleton('core/session')
+                    ->getData('woopra_checkout_success_guest_trigger', true);
+                $data['woopra_checkout_success_guest_name'] = Mage::getSingleton('core/session')
+                    ->getData('woopra_checkout_success_guest_name', true);
+                $data['woopra_checkout_success_guest_email'] = Mage::getSingleton('core/session')
+                    ->getData('woopra_checkout_success_guest_email', true);
             }
 
             if (Mage::helper('woopra')->getCmsNoRoute() != NULL) {
