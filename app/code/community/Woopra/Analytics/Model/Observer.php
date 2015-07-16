@@ -11,6 +11,55 @@
 
 class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
 {
+    public function catalogProductCompareAddProduct(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('woopra')->getProductAddedToCompare() != NULL) {
+            $event = $observer->getEvent();
+            if ($event) {
+                $product = $event->getProduct();
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status', 
+                    Mage::helper('woopra')->getProductAddedToCompare());
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+            }
+        }
+    }
+
+    public function catalogProductCompareRemoveProduct(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('woopra')->getProductRemovedFromCompare() != NULL) {
+            $event = $observer->getEvent();
+            if ($event) {
+                $productId = $event->getProduct()->getProductId();
+                $product = Mage::getModel('catalog/product')->load($productId)->getData();
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
+                    Mage::helper('woopra')->getProductRemovedFromCompare());
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', $product['name']);
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', $product['sku']);
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+            }
+        }
+    }
+
+    public function checkoutCartProductAddAfter(Varien_Event_Observer $observer)
+    {
+        if (Mage::helper('woopra')->getProductAddedToCart() != NULL) {
+            $event = $observer->getEvent();
+            if ($event) {
+                $product = $event->getProduct();
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
+                    Mage::helper('woopra')->getProductAddedToCart());
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
+                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+            }
+        }
+    }
+
     public function newsletterSubscriberChange(Varien_Event_Observer $observer)
     {
         if (Mage::helper('woopra')->getNewsletterSubscribed() != NULL) {
@@ -35,23 +84,39 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
         }
     }
 
+    public function salesQuoteRemoveItem(Varien_Event_Observer $observer)
+    {
+    if (Mage::helper('woopra')->getProductRemovedFromCart() != NULL) {
+        $event = $observer->getEvent();
+        if ($event) {
+            $product = $event->getQuoteItem()->getProduct();
+            Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
+            Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
+                Mage::helper('woopra')->getProductRemovedFromCart());
+            Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
+            Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
+            Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
+            }
+        }
+    }
+
     public function controllerActionBefore(Varien_Event_Observer $observer)
     {
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'customer_account_loginPost' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'customer_account_loginPost' && 
             Mage::helper('woopra')->getCustomerLogin() != NULL) {
             Mage::getSingleton('core/session')->setData('woopra_login_logout_trigger', 1);
             Mage::getSingleton('core/session')->setData('woopra_login_logout_status',
                 Mage::helper('woopra')->getCustomerLogin());
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'customer_account_logoutSuccess' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'customer_account_logoutSuccess' && 
             Mage::helper('woopra')->getCustomerLogout() != NULL) {
             Mage::getSingleton('core/session')->setData('woopra_login_logout_trigger', 1);
             Mage::getSingleton('core/session')->setData('woopra_login_logout_status',
                 Mage::helper('woopra')->getCustomerLogout());
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'contacts_index_post' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'contacts_index_post' && 
             Mage::helper('woopra')->getContactFormSent() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -67,39 +132,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
         
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_cart_add' && 
-            Mage::helper('woopra')->getProductAddedToCart() != NULL) {
-            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
-            if ($request) {
-                $product = Mage::getModel('catalog/product')->load($request['product'])->getData();
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
-                    Mage::helper('woopra')->getProductAddedToCart());
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
-            }
-        }
-
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_cart_delete' && 
-            Mage::helper('woopra')->getProductRemovedFromCart() != NULL) {
-            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
-            if ($request) {
-                $quoteItemId = Mage::getModel('checkout/cart')->getQuote()->getItemById($request['id']);
-                if ($quoteItemId) {
-                    $productId = $quoteItemId->getProduct()->getId();
-                    $product = Mage::getModel('catalog/product')->load($productId)->getData();
-                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
-                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
-                        Mage::helper('woopra')->getProductRemovedFromCart());
-                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
-                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
-                    Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
-                }
-            }
-        }
-        
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'wishlist_index_add' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'wishlist_index_add' && 
             Mage::helper('woopra')->getProductAddedToWishlist() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -113,7 +146,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'wishlist_index_remove' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'wishlist_index_remove' && 
             Mage::helper('woopra')->getProductRemovedFromWishlist() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -128,40 +161,12 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'catalog_product_compare_add' && 
-            Mage::helper('woopra')->getProductAddedToCompare() != NULL) {
-            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
-            if ($request) {
-                $product = Mage::getModel('catalog/product')->load($request['product'])->getData();
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status', 
-                    Mage::helper('woopra')->getProductAddedToCompare());
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', addslashes($product['name']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', addslashes($product['sku']));
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
-            }
-        }
-
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'catalog_product_compare_remove' && 
-            Mage::helper('woopra')->getProductRemovedFromCompare() != NULL) {
-            $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
-            if ($request) {
-                $product = Mage::getModel('catalog/product')->load($request['product'])->getData();
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_trigger', 1);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_status',
-                    Mage::helper('woopra')->getProductRemovedFromCompare());
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_name', $product['name']);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_sku', $product['sku']);
-                Mage::getSingleton('core/session')->setData('woopra_cart_wishlist_price', round($product['price'], 2));
-            }
-        }
-
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_onepage_index' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_onepage_index' && 
             Mage::helper('woopra')->getCheckoutBillingAddress() != NULL) {
             Mage::getSingleton('core/session')->setData('woopra_checkout_trigger', 1);
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_onepage_savePayment' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_onepage_savePayment' && 
             Mage::helper('woopra')->getCheckoutPaymentMethod() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             Mage::getSingleton('core/session')->setData('woopra_checkout_trigger', 1);
@@ -173,8 +178,8 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if (($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_onepage_success' ||
-            $observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_multishipping_success')
+        if (($observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_onepage_success' ||
+            $observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_multishipping_success')
             && Mage::helper('woopra')->getCheckoutSuccess() != NULL) {
             $lastOrderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
             if ($lastOrderId) {
@@ -211,7 +216,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'catalogsearch_result_index' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'catalogsearch_result_index' && 
             Mage::helper('woopra')->getCatalogSearch() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -221,7 +226,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'catalogsearch_advanced_result' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'catalogsearch_advanced_result' && 
             Mage::helper('woopra')->getCatalogSearch() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             $subtotal = '';
@@ -243,7 +248,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'review_product_list' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'review_product_list' && 
             Mage::helper('woopra')->getProductReviewRead() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -257,7 +262,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'review_product_post' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'review_product_post' && 
             Mage::helper('woopra')->getProductReviewPosted() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -278,7 +283,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() ==
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() ===
             'customer_account_forgotpasswordpost' &&
             Mage::helper('woopra')->getForgotPassword() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
@@ -289,7 +294,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'customer_account_editPost' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'customer_account_editPost' && 
             Mage::helper('woopra')->getChangedPassword() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request['change_password'] == 1 && $request['current_password'] != $request['password']) {
@@ -297,7 +302,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'tag_index_save' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'tag_index_save' && 
             Mage::helper('woopra')->getProductTagAdded() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -314,7 +319,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_cart_couponPost' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_cart_couponPost' && 
             Mage::helper('woopra')->getCouponCodeAdded() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -347,12 +352,12 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'customer_account_create' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'customer_account_create' && 
             Mage::helper('woopra')->getCustomerCreateAccount() != NULL) {
             Mage::getSingleton('core/session')->setData('woopra_create_account_trigger', 1);
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'customer_account_createpost' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'customer_account_createpost' && 
             Mage::helper('woopra')->getCustomerCreateAccount() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             Mage::getSingleton('core/session')->setData('woopra_create_account_success_trigger', 1);
@@ -365,7 +370,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'checkout_cart_estimatePost' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'checkout_cart_estimatePost' && 
             Mage::helper('woopra')->getEstimatePost() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -378,7 +383,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'cms_index_noRoute' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'cms_index_noRoute' && 
             Mage::helper('woopra')->getCmsNoRoute() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getOriginalPathInfo();
             Mage::getSingleton('core/session')->setData('woopra_cms_noroute_trigger', 1);
@@ -387,7 +392,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'poll_vote_add' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'poll_vote_add' && 
             Mage::helper('woopra')->getPollVote() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
@@ -406,7 +411,7 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
             }
         }
 
-        if ($observer->getEvent()->getControllerAction()->getFullActionName() == 'sendfriend_product_sendmail' && 
+        if ($observer->getEvent()->getControllerAction()->getFullActionName() === 'sendfriend_product_sendmail' && 
             Mage::helper('woopra')->getProductEmailToFriend() != NULL) {
             $request = $observer->getEvent()->getControllerAction()->getRequest()->getParams();
             if ($request) {
