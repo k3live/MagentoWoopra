@@ -12,7 +12,7 @@
 <config>
     <modules>
         <Woopra_Analytics>
-            <version>1.7.0</version>
+            <version>1.8.0</version>
         </Woopra_Analytics>
     </modules>
     <global>
@@ -41,6 +41,43 @@
                     </newsletter_subscriber_change>
                 </observers>
             </newsletter_subscriber_save_after>
+            <catalog_product_compare_add_product>
+                <observers>
+                    <woopra_catalog_product_compare_add_product>
+                        <type>singleton</type>
+                        <class>woopra/observer</class>
+                        <method>catalogProductCompareAddProduct</method>
+                    </woopra_catalog_product_compare_add_product>
+                </observers>
+            </catalog_product_compare_add_product>
+            <catalog_product_compare_remove_product>
+                <observers>
+                    <woopra_catalog_product_compare_remove_product>
+                        <type>singleton</type>
+                        <class>woopra/observer</class>
+                        <method>catalogProductCompareRemoveProduct</method>
+                    </woopra_catalog_product_compare_remove_product>
+                </observers>
+            </catalog_product_compare_remove_product>
+
+            <checkout_cart_product_add_after>
+                <observers>
+                    <woopra_checkout_cart_product_add_after>
+                        <type>singleton</type>
+                        <class>woopra/observer</class>
+                        <method>checkoutCartProductAddAfter</method>
+                    </woopra_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
+            <sales_quote_remove_item>
+                <observers>
+                    <woopra_sales_quote_remove_item>
+                        <type>singleton</type>
+                        <class>woopra/observer</class>
+                        <method>salesQuoteRemoveItem</method>
+                    </woopra_sales_quote_remove_item>
+                </observers>
+            </sales_quote_remove_item>
             <controller_action_predispatch>
                 <observers>
                     <controller_action_before>
