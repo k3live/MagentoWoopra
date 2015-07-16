@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Woopra_Analytics_Event_And_Visitor_Tracking</name>
-    <version>1.8.0</version>
+    <version>1.9.0</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/OSL-3.0">Open Software License (OSL)</license>
     <channel>community</channel>
@@ -18,11 +18,11 @@ Access custom reports instantly. No more bugging IT. No old-school interfaces. N
 &lt;br /&gt;&#xD;
 &lt;a href="http://www.k3live.com/magento-extensions/magento-woopra-tracking"&gt;&lt;img src="http://www.magentocommerce.com/magento-connect/media/catalog/product/w/o/woopra_tracking_5_1_1.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&#xD;
 Note: This module will not work without a subscription to the &lt;a href="http://www.woopra.com/?woo_campaign=affiliate&amp;woo_medium=referral&amp;woo_source=k3live"&gt;Woopra&lt;/a&gt; service.</description>
-    <notes>Modified observer to capture ajax add to cart and compare.</notes>
+    <notes>Now identifies guest checkouts. Updated download and outgoing tracking defaults.</notes>
     <authors><author><name>Woopra</name><user>Woopra</user><email>support@woopra.com</email></author><author><name>K3Live</name><user>K3Live</user><email>support@k3live.com</email></author></authors>
-    <date>2015-06-18</date>
-    <time>05:20:44</time>
-    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="02c0d45470a447ae4f14e18f4abdc3d4"/></dir><dir name="Helper"><file name="Data.php" hash="de87ef2faeb806905627abb1644be4f6"/></dir><dir name="Model"><file name="Observer.php" hash="730ce88d02056e8162c62f4a3f6358ad"/></dir><dir name="etc"><file name="config.xml" hash="a58eb517cd377b63f0439aac23fdf26b"/><file name="system.xml" hash="cb54ec73ff11b133cc864741f300896c"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="d9dc3de2af23a1991ab7785342086d40"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="2686a404f8b8e967c200d57fa1dfb55c"/><file name="checkout.phtml" hash="b3d7d026c4cf86f834a2a9d5f1d33f36"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="6f38d8633187db1ba9584af2341380a4"/></dir></dir></target></contents>
+    <date>2015-07-07</date>
+    <time>05:36:48</time>
+    <contents><target name="magecommunity"><dir><dir name="Woopra"><dir name="Analytics"><dir name="Block"><file name="Script.php" hash="5d001460a81bbf72d1f8642fad375ebb"/></dir><dir name="Helper"><file name="Data.php" hash="de87ef2faeb806905627abb1644be4f6"/></dir><dir name="Model"><file name="Observer.php" hash="5ec7ca1fcb5ebfd6e85b27d77bfee8a3"/></dir><dir name="etc"><file name="config.xml" hash="3ecf83ffe7d9882130bd3c31c1d155d0"/><file name="system.xml" hash="e8b23b75fe6ab03c5e436e3407526fd6"/></dir></dir></dir></dir></target><target name="magedesign"><dir><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="woopra.xml" hash="d9dc3de2af23a1991ab7785342086d40"/></dir><dir name="template"><dir name="woopra"><file name="script.phtml" hash="4da468761c2439c24801f1a38c40baa9"/><file name="checkout.phtml" hash="b1dd5f2c0af9e973ea3d10a2e479db15"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="Woopra_Analytics.xml" hash="6f38d8633187db1ba9584af2341380a4"/></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>

@@ -22,9 +22,9 @@
 <?php if ($this->getSetting('tracking_cookie_path') != NULL) { ?>    woopra.config('cookie_path', '<?php echo $this->getSetting('tracking_cookie_path'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('ping') == 0) { ?>    woopra.config('ping', false);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('ping_interval') != NULL && $this->getSetting('ping') == 1) { ?>    woopra.config('ping_interval', <?php echo $this->getSetting('ping_interval'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('download_tracking') == 0) { ?>    woopra.config('download_tracking', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('download_tracking') == 1) { ?>    woopra.config('download_tracking', true);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('download_tracking_pause') != NULL && $this->getSetting('download_tracking') == 1) { ?>    woopra.config('download_pause', <?php echo $this->getSetting('download_tracking_pause'); ?>);<?php echo "\n"; } ?>
-<?php if ($this->getSetting('outgoing_tracking') == 0) { ?>    woopra.config('outgoing_tracking', false);<?php echo "\n"; } ?>
+<?php if ($this->getSetting('outgoing_tracking') == 1) { ?>    woopra.config('outgoing_tracking', true);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('outgoing_tracking_pause') != NULL && $this->getSetting('outgoing_tracking') == 1) { ?>    woopra.config('outgoing_pause', <?php echo $this->getSetting('outgoing_tracking_pause'); ?>);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('outgoing_ignore_subdomain') == 0) { ?>    woopra.config('outgoing_ignore_subdomain', false);<?php echo "\n"; } ?>
 <?php if ($this->getSetting('hide_campaign') == 1) { ?>    woopra.config('hide_campaign', true);<?php echo "\n"; } ?>
@@ -35,6 +35,9 @@
 <?php if ($this->getSetting('subdomain') != NULL) { ?>    woopra.identify('subdomain', '<?php echo $this->getSetting('subdomain'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_name') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('customer_name'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_email') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('customer_email'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('woopra_checkout_success_guest_trigger') == 1) { ?>
+<?php if ($this->getSetting('woopra_checkout_success_guest_name') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerName(); ?>', '<?php echo $this->getSetting('woopra_checkout_success_guest_name'); ?>');<?php echo "\n"; } ?>
+<?php if ($this->getSetting('woopra_checkout_success_guest_email') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerEmail(); ?>', '<?php echo $this->getSetting('woopra_checkout_success_guest_email'); ?>');<?php echo "\n"; } } ?>
 <?php if ($this->getSetting('customer_company') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerCompany(); ?>', '<?php echo $this->getSetting('customer_company'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_location') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerLocation(); ?>', '<?php echo $this->getSetting('customer_location'); ?>');<?php echo "\n"; } ?>
 <?php if ($this->getSetting('customer_phone') != NULL) { ?>    woopra.identify('<?php echo Mage::helper('woopra')->getCustomerPhone(); ?>', '<?php echo $this->getSetting('customer_phone'); ?>');<?php echo "\n"; } ?>
@@ -159,7 +162,7 @@
         product_price: '<?php echo $product_price; ?>',
         product_qty: '<?php echo $item->getData('qty_ordered'); ?>'
 <?php echo "    });\n"; } ?>
-<?php } }?>
+<?php } } ?>
 </script>
 <?php if($this->getSetting('test')) { ?>
 <script type="text/javascript">

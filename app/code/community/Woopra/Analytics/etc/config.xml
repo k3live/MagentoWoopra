@@ -12,7 +12,7 @@
 <config>
     <modules>
         <Woopra_Analytics>
-            <version>1.8.0</version>
+            <version>1.9.0</version>
         </Woopra_Analytics>
     </modules>
     <global>
@@ -59,7 +59,6 @@
                     </woopra_catalog_product_compare_remove_product>
                 </observers>
             </catalog_product_compare_remove_product>
-
             <checkout_cart_product_add_after>
                 <observers>
                     <woopra_checkout_cart_product_add_after>
@@ -114,9 +113,9 @@
                 <tracking_cookie_path></tracking_cookie_path>
                 <ping>1</ping>
                 <ping_interval></ping_interval>
-                <download_tracking>1</download_tracking>
+                <download_tracking>0</download_tracking>
                 <download_tracking_pause></download_tracking_pause>
-                <outgoing_tracking>1</outgoing_tracking>
+                <outgoing_tracking>0</outgoing_tracking>
                 <outgoing_tracking_pause></outgoing_tracking_pause>
                 <outgoing_ignore_subdomain>1</outgoing_ignore_subdomain>
                 <hide_campaign></hide_campaign>
