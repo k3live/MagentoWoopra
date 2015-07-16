@@ -213,6 +213,11 @@ class Woopra_Analytics_Model_Observer extends Varien_Event_Observer
                 if ($cost != 0) {
                     Mage::getSingleton('core/session')->setData('woopra_checkout_success_profit', round($profit, 2));
                 }
+                if ($order->getCustomerIsGuest()) {
+                    Mage::getSingleton('core/session')->setData('woopra_checkout_success_guest_trigger', 1);
+                    Mage::getSingleton('core/session')->setData('woopra_checkout_success_guest_name', $order->getCustomerName());
+                    Mage::getSingleton('core/session')->setData('woopra_checkout_success_guest_email', $order->getCustomerEmail());
+                }
             }
         }
 
